@@ -17,8 +17,14 @@ def show
 end
 
 def create
-    plant = Plant.create(name: params[:name], image: params[:image], price: params[:price])
+    plant = Plant.create(plant_params)
     render json: plant, status: :created
+end
+# add strong params conventions
+private
+
+def plant_params
+    params.permit(:name, :image, :price)
 end
 
 end
